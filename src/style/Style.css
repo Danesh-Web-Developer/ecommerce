@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  /* Adjust this value to move the underline up */
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.main {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 90vh;
+}
+
+.rightside {
+  background-image: url("https://img.freepik.com/free-photo/couple-leaving-shopping-mall-after-successful-shopping_329181-1744.jpg?ga=GA1.1.1773174477.1726772804&semt=ais_hybrid");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
+
+.prodcard {
+  transition: transform 0.4s ease-in-out;
+}
+
+.prodcard:hover {
+  transform: scale(1.04);
+}
+
+.searchinput::placeholder {
+  color: white;
+}
+
+.namediv {
+  border: 2px solid white;
+  width: 100%;
+  padding: 5px 20px 0px 20px;
+  border-radius: 10px;
+  line-height: 10px;
+}
+
+.abc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.likedbtn {
+  color: red;
+  cursor: pointer;
+}
+
+
+
+
+
+
+/* media query */
+
+@media only screen and (max-width: 1200px) {
+  .hhhh {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .leftside {
+    padding: 40px 15px 0px 10px;
+    height: 70vh;
+  }
+
+  .rightside {
+    height: 60vh;
+  }
+
+  .main {
+    height: 50vh;
+  }
+
+  .hhhh {
+    width: 26%;
+  }
+}

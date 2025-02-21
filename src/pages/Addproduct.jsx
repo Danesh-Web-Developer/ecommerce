@@ -92,7 +92,7 @@ const Addproduct = () => {
 
     return (
         <>
-            <div className='container-fluid d-flex align-items-center vh-100' style={{ background: 'linear-gradient(0deg, rgba(10,10,10,0.9304096638655462) 0%, rgba(9,9,9,1) 50%, rgba(0,0,0,0.742734593837535) 100%)' }}>
+            <div className='container-fluid d-flex align-items-center vh-100' style={{ background: 'linear-gradient(0deg, rgba(10, 10, 10, 0.7) 0%, rgba(9, 9, 9, 0.68) 50%, rgba(0,0,0,0.742734593837535) 100%)' }}>
                 <div className='container'>
                     <div className='row d-flex justify-content-center'>
                         <div className='col-lg-6 p-3 pb-4' style={{ backgroundColor: '#00000000', border: '2px solid white' }}>

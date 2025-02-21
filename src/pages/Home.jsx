@@ -165,7 +165,7 @@ const Home = () => {
                     </Carousel.Item>
                 </Carousel>
             </div>
-            <div className="container-fluid pb-5 pt-4" style={{ background: 'linear-gradient(162deg, rgba(3,3,3,0.7343312324929971) 20%, rgba(0,0,0,0.8463760504201681) 68%)' }}>
+            <div className="container-fluid pb-5 pt-4" style={{ background: 'linear-gradient(162deg, rgba(3, 3, 3, 0.72) 20%, rgba(0, 0, 0, 0.73) 68%)' }}>
                 <div className="container">
                     <div className="row">
                         <h2 className="mt-5 mb-3 text-white">Featured Products</h2>
@@ -175,7 +175,7 @@ const Home = () => {
                                     <Card.Img onClick={() => details(items.productid)} variant="top" className='rounded-0' src={items.image} style={{ height: '230px' }} />
                                     <Card.Body>
                                         <Card.Title>{items.title}</Card.Title>
-                                        <Card.Text><span className='fs-5'>Rs:</span> {items.price}</Card.Text>
+                                        <Card.Text className="text-danger"><span className='fs-6'>$</span>{items.price}</Card.Text>
                                     </Card.Body>
                                     {role !== "admin" && (
                                         <div>

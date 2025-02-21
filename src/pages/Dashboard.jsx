@@ -8,11 +8,13 @@ import { getDocs, collection } from "firebase/firestore";
 import { db } from "../config";
 import { Package } from 'lucide-react';
 import Card1 from "../components/Card1";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { LayoutDashboard } from 'lucide-react';
 
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null); // State to store current user info
   const navigate = useNavigate(); 
   const auth = getAuth();
 
@@ -31,7 +33,19 @@ const Dashboard = () => {
     };
 
     fetchUsers();
-  }, []);
+
+    // Get the current user
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user); // Set current user data if logged in
+      } else {
+        setCurrentUser(null); // Reset if no user is logged in
+      }
+    });
+
+    // Clean up the listener on unmount
+    return () => unsubscribe();
+  }, [auth]);
 
   const logout = async () => {
     try {
@@ -65,6 +79,15 @@ const Dashboard = () => {
           </button>
           <h3>Sidebar</h3>
           <ul className="list-unstyled mt-5 lh-lg">
+            <li>
+              <Link
+                to="/dashboard/"
+                className="text-white text-decoration-none"
+              >
+                <LayoutDashboard className="me-2 fs-5" />
+                Dashboard
+              </Link>
+            </li>
             <li>
               <Link
                 to="/dashboard/product"
@@ -114,6 +137,13 @@ const Dashboard = () => {
                 <span className="navbar-toggler-icon"></span>
               </button>
               <h1 className="navbar-brand">Dashboard</h1>
+              <div className="ms-auto">
+                {currentUser ? (
+                  <span className="text-white">{`${currentUser.email}`}</span>
+                ) : (
+                  <Link to="/login" className="text-white text-decoration-none">Login</Link>
+                )}
+              </div>
             </div>
           </nav>
           <Routes>

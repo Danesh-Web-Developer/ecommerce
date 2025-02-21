@@ -1,15 +1,15 @@
-
 import { useContext, useEffect, useState } from "react";
-import { Card, Table } from "react-bootstrap";
+import { Card, Table, Spinner } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Navbar1 from "../components/Navbar";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config";
 import MyContext from "../Context/Mycontext";
+
 const Orders = () => {
     const { role } = useContext(MyContext);
     const [orders, setOrders] = useState([]);
-    console.log(orders);
+    const [loading, setLoading] = useState(true); // New state for loading
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -20,8 +20,10 @@ const Orders = () => {
                     ...doc.data(),
                 }));
                 setOrders(ordersData);
+                setLoading(false); // Set loading to false once data is fetched
             } catch (err) {
                 console.error("Error fetching orders:", err);
+                setLoading(false); // Set loading to false even if there's an error
             }
         };
 
@@ -34,7 +36,12 @@ const Orders = () => {
             <div className="container-fluid" style={{ background: 'linear-gradient(162deg, rgba(3,3,3,0.7343312324929971) 20%, rgba(0,0,0,0.8463760504201681) 68%)' }}>
                 <div className="container pt-4 pb-5">
                     <h3 className="text-white">Your Orders</h3>
-                    {orders.length === 0 ? (
+                    {loading ? ( // If still loading, show a spinner
+                        <div className="text-center">
+                            <Spinner animation="border" variant="light" />
+                            <p className="text-white">Loading...</p>
+                        </div>
+                    ) : orders.length === 0 ? (
                         <Card className="text-center p-4">
                             <Card.Title>No orders found.</Card.Title>
                         </Card>

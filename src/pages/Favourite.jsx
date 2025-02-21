@@ -6,10 +6,12 @@ import Card from 'react-bootstrap/Card';
 import MyContext from "../Context/Mycontext";
 import { db } from "../config";
 import { useNavigate } from 'react-router';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Favourite = () => {
     const { user } = useContext(MyContext);
-    const [favourite, setfavourite] = useState([])
+    const [favourite, setfavourite] = useState([]);
+    const [loading, setLoading] = useState(true); 
 
     const navigate = useNavigate();
 
@@ -20,6 +22,7 @@ const Favourite = () => {
             const querySnapshot = await getDocs(q);
             const cartData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id, }));
             setfavourite(cartData);
+            setLoading(false);
         }
         getcartdata()
     }, [user.uid]);
@@ -33,10 +36,12 @@ const Favourite = () => {
             console.error("Error deleting favourite: ", error);
         }
     }
+
     const details = (id) => {
         console.log(id);
         navigate(`/productdetails/${id}`);
     };
+
     return (
         <>
             <Navbar1 />
@@ -44,14 +49,18 @@ const Favourite = () => {
                 <div className="container pt-4 pb-5">
                     <h3 className="text-white">Favourite</h3>
                     <div className="row">
-                        {favourite.length > 0 ? (
+                        {loading ? (
+                            <div className="d-flex justify-content-center align-items-center" style={{ height: '300px' }}>
+                                <Spinner animation="border" variant="light" />
+                            </div>
+                        ) : favourite.length > 0 ? (
                             favourite.map((items, index) => (
                                 <div className="col-lg-3 col-md-6 col-12" key={index}>
                                     <Card className='mt-4 p-0 border-0 rounded-0 prodcard'>
-                                    <Card.Img onClick={() => details(items.productid)} variant="top" className='rounded-0' src={items.image} style={{ height: '220px' }} />
+                                        <Card.Img onClick={() => details(items.productid)} variant="top" className='rounded-0' src={items.image} style={{ height: '220px' }} />
                                         <Card.Body>
                                             <Card.Title>{items.title}</Card.Title>
-                                            <Card.Text><span className='fs-5'>Rs:</span> {items.price}</Card.Text>
+                                            <Card.Text className="text-danger"><span className='fs-6'>$</span>{items.price}</Card.Text>
                                         </Card.Body>
                                         <button
                                             className="btn btn-danger rounded-0"
@@ -70,7 +79,7 @@ const Favourite = () => {
             </div>
             <Footer />
         </>
-    )
+    );
 }
 
 export default Favourite;

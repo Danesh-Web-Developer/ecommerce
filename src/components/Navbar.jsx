@@ -55,8 +55,10 @@ const Navbar1 = () => {
     try {
       await signOut(auth);
       navigate("/login");
+      alert("success")
     } catch (error) {
       console.error("Error signing out:", error);
+      alert("Error signing out:", error)
     }
   };
   return (
@@ -97,7 +99,7 @@ const Navbar1 = () => {
                   )}
                 </i> <i>Cart</i>
               </Link>
-          <Button className='ms-3 p-1 btn-danger text-white mx-2 px-2 ' onClick={logout}>
+          <Button className='ms-3 p-1 btn-danger text-white mx-2 ' onClick={logout}>
             Logout
           </Button>
             </div>

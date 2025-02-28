@@ -32,7 +32,7 @@ const Login = () => {
                             } else {
                                 navigate("/");
                             }
-
+                            alert("success login")
                         } else {
                             console.log("No such document!");
                         }
@@ -44,6 +44,7 @@ const Login = () => {
                 .catch((error) => {
                     const errorMessage = error.message;
                     console.log(errorMessage);
+                    alert(errorMessage)
                 })
                 .finally(() => {
                     setLoading(false); 

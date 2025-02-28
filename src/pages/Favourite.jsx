@@ -32,7 +32,9 @@ const Favourite = () => {
             const docRef = doc(db, "favourite", itemId);
             await deleteDoc(docRef);
             setfavourite(favourite.filter(item => item.id !== itemId));
-        } catch (error) {
+            alert("Delete Wishlist")
+        } 
+        catch (error) {
             console.error("Error deleting favourite: ", error);
         }
     }
@@ -56,7 +58,7 @@ const Favourite = () => {
                         ) : favourite.length > 0 ? (
                             favourite.map((items, index) => (
                                 <div className="col-lg-3 col-md-6 col-12" key={index}>
-                                    <Card className='mt-4 p-0 border-0 rounded-0 prodcard'>
+                                    <Card className='mt-2 p-0 border-0 rounded-0 prodcard'>
                                         <Card.Img onClick={() => details(items.productid)} variant="top" className='rounded-0' src={items.image} style={{ height: '220px' }} />
                                         <Card.Body>
                                             <Card.Title>{items.title}</Card.Title>

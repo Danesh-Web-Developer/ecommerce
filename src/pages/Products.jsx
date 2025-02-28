@@ -36,8 +36,10 @@ const Products = () => {
             await deleteDoc(doc(db, "products", id));
             setproduct(newProductData);
             console.log("Product deleted successfully");
+            alert("Product deleted successfully");
         } catch (error) {
             console.error("Error deleting product: ", error);
+            alert("Error deleting product: ", error);
         } finally {
             setLoading(false); 
         }
@@ -117,7 +119,6 @@ const Products = () => {
                     where("uid", "==", user.uid),
                     where("productid", "==", id),
                 );
-
                 const querySnapshot = await getDocs(favoriteQuery);
                 if (!querySnapshot.empty) {
                     querySnapshot.forEach(async (docSnap) => {
@@ -125,6 +126,7 @@ const Products = () => {
                     });
                     setFavorites((prev) => ({ ...prev, [id]: false })); 
                     console.log("Product removed from favorites");
+                    alert("Delete Whishlist");
                 }
             } catch (e) {
                 console.error("Error removing from favorites: ", e);
@@ -140,6 +142,7 @@ const Products = () => {
                     productid: cartdata.productid,
                 });
                 setFavorites((prev) => ({ ...prev, [id]: true }));
+                alert("Add Whishlist")
                 console.log("Product added to favorites with ID: ", docRef.id);
             } catch (e) {
                 console.error("Error adding to favorites: ", e);

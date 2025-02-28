@@ -8,10 +8,10 @@ const Contact = () => {
     return (
         <>
             <Navbar1 />
-            <div className="container-fluid" style={{ background: 'linear-gradient(0deg, rgba(10,10,10,0.9304096638655462) 0%, rgba(9,9,9,1) 50%, rgba(0,0,0,0.742734593837535) 100%)' }}>
-                <div className="container pt-5 pb-5">
+            <div className="container-fluid" style={{ background: 'linear-gradient(0deg, rgba(10, 10, 10, 0.76) 0%, rgba(20, 20, 20, 0.74) 50%, rgba(0, 0, 0, 0.68) 100%)' }}>
+                <div className="container pt-2 pb-5">
                     <div className="row p-4 d-flex justify-content-evenly">
-                        <div className="col-lg-4 col-12 p-4 contactleftbox" style={{backgroundColor:'#00000000',border:'2px solid white'}}>
+                        <div className="col-lg-4 col-12 p-4 contactleftbox" style={{backgroundColor:'rgb(131, 127, 127)',border:'2px solid white'}}>
                             <div className='pb-3 border-bottom-1 border-bottom-black'>
                                 <h6 className='pb-4 text-white'><i className="bi bi-telephone fs-3 me-2 text-white"></i>  Call To Us</h6>
                                 <p className="text-white">We are available 24/7,7 days a week.</p>
@@ -25,7 +25,7 @@ const Contact = () => {
                             </div>
                         </div>
 
-                        <div className="col-lg-7 col-12 p-4" style={{backgroundColor:'#00000000',border:'2px solid white'}}>
+                        <div className="col-lg-7 col-12 p-4" style={{backgroundColor:'rgb(128, 125, 125)',border:'2px solid white'}}>
                             <Form>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Control type="text" placeholder='Your Name' className='shadow-none rounded-0 contactinput' />

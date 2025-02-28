@@ -15,7 +15,7 @@ const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null); // State to store current user info
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const auth = getAuth();
 
   useEffect(() => {
@@ -34,25 +34,25 @@ const Dashboard = () => {
 
     fetchUsers();
 
-    // Get the current user
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setCurrentUser(user); // Set current user data if logged in
+        setCurrentUser(user); 
       } else {
-        setCurrentUser(null); // Reset if no user is logged in
+        setCurrentUser(null); 
       }
     });
 
-    // Clean up the listener on unmount
     return () => unsubscribe();
   }, [auth]);
 
   const logout = async () => {
     try {
-      await signOut(auth); 
-      navigate("/login"); 
+      await signOut(auth);
+      navigate("/login");
+      alert("success fully")
     } catch (error) {
       console.error("Error signing out:", error);
+      alert("Error signing out:", error)
     }
   };
 
@@ -60,17 +60,7 @@ const Dashboard = () => {
     <div className="container-fluid">
       <div className="row">
         <div
-          className={`col-lg-2 col-md-3 bg-dark text-white p-3 ${showSidebar ? "d-block" : "d-none d-md-block"
-            }`}
-          style={{
-            height: "100vh",
-            overflowY: "auto",
-            position: "fixed",
-            left: 0,
-            top: 0,
-            zIndex: 1000,
-          }}
-        >
+          className={`col-lg-2 col-md-3 bg-dark text-white p-3 ${showSidebar ? "d-block" : "d-none d-md-block"}`} style={{ height: "100vh", overflowY: "auto", position: "fixed", left: 0, top: 0, zIndex: 1000, }}>
           <button
             className="btn btn-light d-block d-md-none mb-3"
             onClick={() => setShowSidebar(false)}

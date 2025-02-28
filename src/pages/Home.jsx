@@ -25,7 +25,7 @@ const Home = () => {
             const products = [];
             querySnapshot.forEach((doc) => {
                 const productData = doc.data();
-                if (productData.featured) {  // Check if product is featured
+                if (productData.featured) {
                     products.push({ id: doc.id, ...productData });
                 }
             });
@@ -41,6 +41,7 @@ const Home = () => {
             await deleteDoc(doc(db, "products", id));
             setproduct(newProductData);
             console.log("Product deleted successfully");
+            alert("Product deleted successfully");
         } catch (error) {
             console.error("Error deleting product: ", error);
         }
@@ -56,12 +57,13 @@ const Home = () => {
                 where("uid", "==", user.uid),
                 where("id", "==", id),
             );
-
+            alert("Add cart")
             const querySnapshot = await getDocs(cartQuery);
             if (!querySnapshot.empty) {
                 alert("This product is already in your cart!");
                 navigate("/cart");
                 return;
+
             }
             const docRef = await addDoc(collection(db, "carts"), {
                 image: cartdata.image,
@@ -89,47 +91,42 @@ const Home = () => {
                 let favoritesData = {};
                 querySnapshot.forEach((docSnap) => {
                     const data = docSnap.data();
-                    favoritesData[data.id] = true; // Mark as favorite
+                    favoritesData[data.id] = true;
                 });
-                setFavorites(favoritesData); // Set favorites state
+                setFavorites(favoritesData);
             } catch (error) {
                 console.error("Error fetching favorites: ", error);
             }
         };
 
         if (user?.uid) {
-            fetchFavorites(); // Only fetch if user is logged in
+            fetchFavorites();
         }
     }, [user]);
 
-    // Toggle Favorite
     const Favouritebtn = async (id) => {
         const cartdata = product.find((item) => item.productid === id);
 
-        // Check if already added to favorites
         if (favorites[id]) {
-            // If already in favorites, remove it
             try {
                 const favoriteQuery = query(
                     collection(db, "favourite"),
                     where("uid", "==", user.uid),
                     where("id", "==", id),
                 );
-
                 const querySnapshot = await getDocs(favoriteQuery);
                 if (!querySnapshot.empty) {
-                    // Remove from the database
                     querySnapshot.forEach(async (docSnap) => {
                         await deleteDoc(doc(db, "favourite", docSnap.id));
                     });
                     setFavorites({ ...favorites, [id]: false }); // Update state to remove from favorites
                     console.log("Product removed from favorites");
+                    alert("Delete wishlist");
                 }
             } catch (e) {
                 console.error("Error removing from favorites: ", e);
             }
         } else {
-            // If not in favorites, add it
             try {
                 const docRef = await addDoc(collection(db, "favourite"), {
                     image: cartdata.image,
@@ -140,6 +137,7 @@ const Home = () => {
                     id: cartdata.productid,
                 });
                 setFavorites({ ...favorites, [id]: true }); // Update state to add to favorites
+                alert("Add wishlist")
                 console.log("Product added to favorites with ID: ", docRef.id);
             } catch (e) {
                 console.error("Error adding to favorites: ", e);
@@ -168,7 +166,7 @@ const Home = () => {
             <div className="container-fluid pb-5 pt-4" style={{ background: 'linear-gradient(162deg, rgba(3, 3, 3, 0.72) 20%, rgba(0, 0, 0, 0.73) 68%)' }}>
                 <div className="container">
                     <div className="row">
-                        <h2 className="mt-5 mb-3 text-white">Featured Products</h2>
+                        <h2 className="mt-3 mb-3 text-white">Featured Products</h2>
                         {featuredProducts.map((items, index) => (
                             <div className="col-lg-3 col-md-6 col-12" key={index}>
                                 <Card className='mt-2 mb-4 p-0 border-0 rounded-0 prodcard'>

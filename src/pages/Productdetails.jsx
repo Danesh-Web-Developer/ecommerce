@@ -14,7 +14,7 @@ const Productdetails = () => {
                 <div className="container pt-5 pb-5">
                     <div className="row" >
                         <div className="col-lg-6 col-12 text-white">
-                            <img src={data.image} alt="" className='rounded-0 w-100' style={{ height: '60vh'}} />
+                            <img src={data.image} alt="" className='rounded-0 w-100' style={{ height: '50vh'}} />
                         </div>
                         <div className="col-lg-6 col-12 p-4" style={{ lineHeight: '27px' }}>
                             <h1 className="text-white">{data.title}</h1>

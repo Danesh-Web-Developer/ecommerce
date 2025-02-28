@@ -36,6 +36,7 @@ const Signup = () => {
                         setlname('')
                         setemail('')
                         setpassword('')
+                        alert("success signup")
                     } catch (e) {
                         console.error("Error adding document: ", e);
                         setLoading(false); 
@@ -44,6 +45,7 @@ const Signup = () => {
                 .catch((error) => {
                     const errorMessage = error.message;
                     console.log(errorMessage);
+                    alert(errorMessage)
                     setLoading(false); 
                 });
         } else {

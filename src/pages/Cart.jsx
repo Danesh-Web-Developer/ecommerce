@@ -34,6 +34,7 @@ const Cart = () => {
             await deleteDoc(doc.ref);
         });
         setcartproduct(updatedData);
+        alert("Delete cart")
     };
 
     const productqincrease = async (productid) => {
@@ -106,7 +107,7 @@ const Cart = () => {
                         </div>
                     ) : (
                         <Row>
-                            <Col xs={12} lg={8} className="mb-4">
+                            <Col xs={12} lg={8} className="mb-1">
                                 {cartproduct.length > 0 ? (
                                     cartproduct.map((product) => (
                                         <Card key={product.id} className="mb-3 rounded-0">

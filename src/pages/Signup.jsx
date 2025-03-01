@@ -54,7 +54,7 @@ const Signup = () => {
     }
 
     return (
-        <div className='container-fluid d-flex align-items-center vh-100' style={{ background: 'linear-gradient(0deg, rgba(10, 10, 10, 0.68) 0%, rgba(9, 9, 9, 0.77) 50%, rgba(0,0,0,0.742734593837535) 100%)' }}>
+        <div className='container-fluid d-flex align-items-center vh-100' style={{ background: 'linear-gradient(0deg, rgba(10, 10, 10, 0.7) 0%, rgba(9, 9, 9, 0.7) 50%, rgba(0, 0, 0, 0.67) 100%)'  }}>
             <div className='container'>
                 <div className='row d-flex justify-content-center'>
                     <div className='col-lg-6 p-3 pb-4' style={{ backgroundColor: '#9ea6ac', border: '2px solid white' }}>

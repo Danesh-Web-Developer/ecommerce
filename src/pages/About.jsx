@@ -1,4 +1,4 @@
-import Cards from "../components/card";
+import Cards from "../components/Card";
 import Footer from "../components/Footer";
 import Navbar1 from "../components/Navbar";
 import '../style/Style.css'
